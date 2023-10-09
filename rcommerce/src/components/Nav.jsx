@@ -18,23 +18,41 @@ const Nav = () => {
     const showCart = useSelector((state) => state.genToggle.showCart);
 
 
+    // const { show } = {
+    //     showMobileMenu : useSelector((state) => state.genToggle.showMobileMenu),
+    //     showMobileSearch : useSelector((state) => state.genToggle.showMobileSearch),
+    //     showCart : useSelector((state) => state.genToggle.showCart),
+    // }
+
+
     const dispatch = useDispatch();
 
     const iconStyle = 'cursor-pointer text-2xl text-white hover:scale-110 transition-all';
 
-    const toggleMobileMenu = () => {
-        dispatch(isMobileMenu());
-    };
+    const allTweekFruntion = (functionName, fn2) => {
+        if (functionName) {
+            functionName = () => {
+                dispatch(fn2)
+            }
+        }
+    }
 
-    const toggleMobileSearch = () => {
-        dispatch(isMobileSearch());
-    };
+    allTweekFruntion('toggleMobileMenu', isMobileMenu);
+    allTweekFruntion('toggleMobileSearch', isMobileSearch);
+    allTweekFruntion('toggleIsCart', isCart);
 
-    const toggleIsCart = () => {
-        dispatch(isCart());
-    };
+    // a function that takes a functionName name
+    // const toggleMobileMenu = () => {
+    //     dispatch(isMobileMenu());
+    // };
 
+    // const toggleMobileSearch = () => {
+    //     dispatch(isMobileSearch());
+    // };
 
+    // const toggleIsCart = () => {
+    //     dispatch(isCart());
+    // };
 
     return (
         <>
@@ -48,11 +66,11 @@ const Nav = () => {
                                 ?
                                 (
                                     <div className="div">
-                                        <CiMenuBurger className={`${iconStyle} md:hidden`} onClick={toggleMobileMenu} />
+                                        <CiMenuBurger className={`${iconStyle} md:hidden`} onClick={allTweekFruntion.toggleMobileMenu} />
                                         <GoSearch className={`${iconStyle} hidden md:block`} />
                                     </div>
                                 )
-                                : <TfiClose className={iconStyle} onClick={toggleMobileMenu} />
+                                : <TfiClose className={iconStyle} onClick={allTweekFruntion.toggleMobileMenu} />
                             }
 
 
@@ -63,14 +81,16 @@ const Nav = () => {
                             <div className="rght flex items-center space-x-4 md:space-x-5">
                                 <div className="wrap">
                                     <RxPerson className={`${iconStyle} hidden md:block`} />
-                                    <GoSearch className={`${iconStyle} md:hidden`} onClick={toggleMobileSearch} />
+                                    <GoSearch className={`${iconStyle} md:hidden`} onClick={allTweekFruntion.toggleMobileSearch} />
                                 </div>
-                                <SlHandbag className={iconStyle} onClick={toggleIsCart} />
+                                <SlHandbag className={iconStyle} onClick={allTweekFruntion.toggleIsCart} />
                             </div>
 
                         </div>
                     </div>
+
                     <DesktopMenu />
+
                 </div>
 
                 {/* Calling  */}
