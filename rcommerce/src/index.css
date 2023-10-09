@@ -11,6 +11,34 @@
     @media screen and (max-width: 600px){
       min-width: 100%;
     }
-
   }
+}
+
+@layer selectOption {
+.custom-select {
+  border: 1px solid #0f0f0f;
+  background-color: #fff;
+  padding: 5px;
+  font-size: 16px;
+  width: auto;
+  transition: border 0.3s, box-shadow 0.3s;
+}
+
+/* Style the options */
+.custom-select option {
+  padding: 5px;
+  background-color: #fff;
+  color: #333;
+  border: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s;
+}
+
+/* Style the selected option */
+.custom-select option:checked {
+  background-color: #007bff;
+  color: #fff;
+}
+
+
 }
